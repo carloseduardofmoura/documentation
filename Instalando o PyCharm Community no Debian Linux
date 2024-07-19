@@ -1,0 +1,53 @@
+Instalando o PyCharm Community no Debian Linux
+
+OBS: Neste documento o (?) significa a versão do pycharm que você está instalando. Porcesso validado para distribuição Debian Linux e derivados.
+
+1. Mova o arquivo de distribuição PyCharm que você baixou de (https://www.jetbrains.com/pt-br/pycharm/download/) para raiz de seu diretório de usuário local e descompacte o arquivo.
+
+      tar -xzvf pycharm-community-2022.3.tar.gz
+
+2. Para iniciar a instalação e posteriormente o uso do aplicativo, vá até a pasta “/bin".
+
+      cd pycharm-community-?/bin
+
+      ./pycharm.sh (Isso inicializará vários arquivos de configuração no diretório de configuração ~/.config/JetBrains/PyCharm?)
+
+3. Aceite os termos de utilização. Instalação concluída.
+
+4. [OPCIONAL] Se se desejar adicione "{installation home}/bin" ao seu ambiente PATH variável para que você possa iniciar o PyCharm de qualquer diretório.
+
+5. [OPCIONAL] Para ajustar o valor do tamanho do heap da JVM, crie um arquivo pycharm.vmoptions (ou pycharm64.vmoptions se estiver usando um JDK de 64 bits) no diretório de configuração e defina os parâmetros -Xms e -Xmx. Para ver como fazer isso, você pode referenciar o arquivo vmoptions em "{installation home}/bin" como um modelo mas não o modifique, adicione suas opções ao novo arquivo.
+
+6. [OPCIONAL] Altere a localização dos diretórios "config" e "system". Por padrão, o PyCharm armazena todas as suas configurações no diretório ~/.config/JetBrains/PyCharm? e usa ~/.local/share/JetBrains/PyCharm? como cache de dados.
+
+  Para alterar a localização desses diretórios:
+
+6.1. Abra um console em ~/.config/JetBrains/PyCharm?
+
+6.2. Crie um arquivo idea.properties e defina as variáveis idea.system.path e idea.config.path, por exemplo:
+
+      idea.system.path=~/custom/system
+      idea.config.path=~/custom/config
+
+NOTA: Armazene o cache de dados (diretório "sistema") em um disco com pelo menos 1 GB de espaço livre.
+
+7) [OPCIONAL] Criando icone de acesso no gnome
+
+7.1) Abra a pasta onde o pycharm foi instalado, com gerenciador de arquivos (dolphin), “pycharm-community-?/bin”, clique no canto superior direito, no icone de menu e escolha preferências, em preferências vá até comportamento, no item “Arquivos de texto executáveis”, marque “Executá-los”.
+
+7.2) Ainda na janela “pycharm-community-?/bin”, ache o arquivo “pycharm.sh”, clique nesse arquivo com o botão direito do mouse e vá até propriedades, depois clique em permissões e marque a opção “Permitir execução do arquivo como um programa”.
+
+7.3) Em seguida, inicie o um editor de texto  e cole o seguinte no arquivo de texto vazio.
+
+      [Desktop Entry]
+      Encoding=UTF-8
+      Version=1.0
+      Type=Application
+      Terminal=false
+      Exec=/home/seu usuário/pycharm-community-?/bin/pycharm.sh
+      Name=Pycharm
+      Icon=
+
+7.4) Após, este arquivo deve ter o nome “pycharm” com a extenção “.desktop” (pycharm.desktop) e ser salvo na pasta “/home/seu usuário/.local/share/applications”.
+
+FIM
